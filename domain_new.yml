@@ -1,0 +1,116 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- check_location
+- restaurant_search
+- goodbye
+- greet
+- affirm
+- deny
+- thankyou
+- send_email
+entities:
+- cuisine
+- email
+- location
+- price
+slots:
+  cuisine:
+    type: categorical
+    influence_conversation: true
+    values:
+    - chinese
+    - italian
+    - north indian
+    - south indian
+    - american
+    - mexican
+    - __other__
+  email:
+    type: text
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+  location_found:
+    type: categorical
+    influence_conversation: true
+    values:
+    - notfound
+    - tier3
+    - found
+    - __other__
+  price:
+    type: categorical
+    influence_conversation: true
+    values:
+    - lesser than 300
+    - between 300 to 700
+    - more than 700
+    - __other__
+responses:
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_goodbye:
+  - text: goodbye
+  - text: Bye-bye
+  utter_default:
+  - text: default message
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    - payload: American
+      title: American
+    - payload: Mexican
+      title: Mexican
+    text: what kind of cuisine would you like?
+  utter_ask_price:
+  - buttons:
+    - payload: lesser than 300
+      title: Less than Rs. 300
+    - payload: between 300 to 700
+      title: Between Rs. 300 and 700
+    - payload: more than 700
+      title: More than Rs. 700
+    text: can you please specify the price range you are looking?
+  utter_ask_howcanhelp:
+  - text: how can I help you today?
+  utter_location_notfound:
+  - text: Sorry, location not found. Please specify the location again
+  utter_foodie_not_working:
+  - text: Sorry, Zomato is not working in this area. Can you please try some other location
+  utter_ask_location:
+  - text: In what location?
+  utter_ask_mail:
+  - text: Could you please share your email address?
+  - text: What is your email address?
+  - text: Please provide your email address
+  - text: Please enter your email address
+  utter_final_bye:
+  - text: Okies!Guten Apeti!
+actions:
+- action_check_location
+- action_restaurant
+- email_restaurant_details
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_mail
+- utter_ask_price
+- utter_default
+- utter_final_bye
+- utter_foodie_not_working
+- utter_goodbye
+- utter_greet
+- utter_location_notfound
+version: '2.0'
